@@ -31,7 +31,7 @@ stdVox = "std"
 
 -- | Name of the directory containing voice files
 voxDirectory :: FilePath
-voxDirectory = "vox"
+voxDirectory = "../vox"
 
 -- | Path of the wave header used during generation of the output.
 waveHeaderPath :: FilePath

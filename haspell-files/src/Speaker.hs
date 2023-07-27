@@ -25,7 +25,7 @@ speakWord lang word = do
 
 -- | Path to the "silent" waveFile
 emptyWave :: FilePath
-emptyWave = "vox/std/-"
+emptyWave = "../vox/std/-"
 
 -- | Name of the .tmp file which w
 tmpFileName :: FilePath
@@ -33,4 +33,4 @@ tmpFileName = ".tmp"
 
 -- | Plays the given wave file
 playFile :: String -> IO()
-playFile file = callProcess "play" [file ++ waveExtension]
+playFile file = callProcess "../play" [file ++ waveExtension]

@@ -18,7 +18,7 @@ phonemeRules :: String -- ^ ID of language - for example "pol"
    -> IO [PhonemeRule]
 phonemeRules lang = fmap sortRules $ fmap  (map tupleToPhonemeRule) rulesTupleList
     where
-        rulesTupleList =  readHspFile ("lang/" ++ lang ++ "/" ++ lang ++ "_phones.hsp")
+        rulesTupleList =  readHspFile ("../lang/" ++ lang ++ "/" ++ lang ++ "_phones.hsp")
 
 tupleToPhonemeRule :: (String, String)
                             -> PhonemeRule
@@ -61,7 +61,7 @@ aliases :: String -- ^ ID of language - for exaple "pol"
         -> IO [Alias]
 aliases lang = fmap  (map tupleToAlias) aliasesTupleList
     where
-        aliasesTupleList = readHspFile ("lang/" ++ lang ++ "/" ++ lang ++ "_alias.hsp")
+        aliasesTupleList = readHspFile ("../lang/" ++ lang ++ "/" ++ lang ++ "_alias.hsp")
 
 
 -- |List of aliasRules from given language (.hsp file)
@@ -69,7 +69,7 @@ aliasRulesAliased :: String -- ^ ID of language - for exaple "pol"
             -> IO [AliasRule]
 aliasRulesAliased lang = fmap  (map tupleToAliasRule) rulesTupleList
     where
-        rulesTupleList = readHspFile ("lang/" ++ lang ++ "/" ++ lang ++ "_aliasrules.hsp")
+        rulesTupleList = readHspFile ("../lang/" ++ lang ++ "/" ++ lang ++ "_aliasrules.hsp")
 -- |Makes an aliasRule out of a String from .hsp file
 tupleToAliasRule :: (String, String) -- ^ String containing an aliasRule - for example "<hardcon>,i,<vow> -> $0,j,$1"
             -> AliasRule
