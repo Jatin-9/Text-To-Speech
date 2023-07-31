@@ -16,7 +16,7 @@ speak lang (word:rest) =  do
 speak _ [] = return ()
 
 -- | Creates a .tmp file with given word (list of phonems) and plays it in given voice
-speakWord 	:: String 		-- ^ Name of the voice. It should match the name of the voice folder in the voxDirectory.
+speakWord :: String 		-- ^ Name of the voice. It should match the name of the voice folder in the voxDirectory.
 			-> [Phoneme] 		-- ^ List of phonems (word) to speak
 			-> IO()
 speakWord lang word = do
@@ -33,4 +33,4 @@ tmpFileName = ".tmp"
 
 -- | Plays the given wave file
 playFile :: String -> IO()
-playFile file = callProcess "../play" [file ++ waveExtension]
+playFile file = callProcess "afplay" [file ++ waveExtension]
