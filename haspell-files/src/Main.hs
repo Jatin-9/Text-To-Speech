@@ -6,9 +6,9 @@ import Soundgluer
 
 main :: IO ()
 main = do
-  let languageId = "pol"  -- assuming English language
-  let voiceName = "luknw"  -- assuming a 'default' voice
-  let inputText = "jatin"
+  let languageId = "eng"  -- assuming English language
+  let voiceName = "luknz"  -- assuming a 'default' voice
+  let inputText = "bbb"
   -- Convert the input text to phonemes
   phonemes <- phonemize languageId inputText
   -- Speak the phonemes
