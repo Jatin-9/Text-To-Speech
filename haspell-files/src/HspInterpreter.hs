@@ -65,7 +65,7 @@ aliases lang = fmap  (map tupleToAlias) aliasesTupleList
 
 
 -- |List of aliasRules from given language (.hsp file)
-aliasRulesAliased :: String -- ^ ID of language - for exaple "pol"
+aliasRulesAliased :: String -- ^ ID of language - for example "pol"
             -> IO [AliasRule]
 aliasRulesAliased lang = fmap  (map tupleToAliasRule) rulesTupleList
     where

@@ -27,7 +27,7 @@ pathSeparator = "/"
 
 -- | Name of the folder containing standard phonems (like silence), which appear accross all languages.
 stdVox :: FilePath
-stdVox = "std"
+stdVox = "../vox/std"
 
 -- | Name of the directory containing voice files
 voxDirectory :: FilePath
