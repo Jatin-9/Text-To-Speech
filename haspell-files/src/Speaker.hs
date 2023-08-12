@@ -4,6 +4,7 @@ import HspTypes(Phoneme)
 import Phonemizer (phonemize)
 import Soundgluer (glueSpeech, waveExtension)
 import System.Process(callProcess)
+import Data.List
 
 -- | Plays the phonems in the specified voice
 speak :: String         -- ^ Name of the voice. It should match the name of the voice folder in the voxDirectory.
@@ -22,6 +23,7 @@ speakWord :: String         -- ^ Name of the voice. It should match the name of 
 speakWord lang word = do
     glueSpeech lang [word] tmpFileName
     playFile tmpFileName
+    --putStrLn (intercalate "," ["tmpFileName"])
 
 -- | Path to the "silent" waveFile
 emptyWave :: FilePath

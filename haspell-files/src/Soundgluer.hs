@@ -8,10 +8,10 @@ import qualified Data.Map as M
 import qualified Data.Text as T -- pack, unpack, takeEnd, dropEnd
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Builder as B
-
+import System.Process (callCommand)
 import Codec.Audio.Wave
 import HspTypes (Phoneme)
-
+import Data.List
 
 -- | Extension of audio files representing phonems.
 waveExtension :: FilePath
@@ -45,8 +45,10 @@ glueSpeech :: String        -- ^ Name of the voice. It should match the name of 
 glueSpeech vox words filePath
         | null words = return ()
         | otherwise = do
+            --putStrLn waveHeaderPath
+            putStrLn (intercalate ";" (intercalate [","] words))
             phoneSpeechMap <- loadVoxAudio vox
-            phoneAudioMap <- loadVoxAudio vox
+            --phoneAudioMap <- loadVoxAudio vox
             waveHeader <- readWaveFile waveHeaderPath
             let appendWord w1 w2 = w1 `mappend` (phoneSpeechMap M.! "-") `mappend` w2
             let gluedSpeech = foldr appendWord (mempty :: B.Builder)
@@ -70,9 +72,24 @@ loadVoxAudio vox =
     loadVoxAudio' vox = do
         let voxDirectory = getVoxPath vox
         dirWaves <- filter isWave <$> listDirectory voxDirectory
+        --putStrLn (intercalate "," dirWaves)
         phoneAudioList <- zip <$> (return $ map phoneName dirWaves)
                               <*> forM dirWaves (getAudioData voxDirectory)
+        --let phoneNames = map fst phoneAudioList
+        --putStrLn(intercalate "," phoneNames) --[this is working fine the phoneName is correct]                     
         return $ M.fromList phoneAudioList
+     
+-- no output is found means for a given a phoneme it is not able to fetch an audio
+testingOutputAudio :: FilePath -> IO()
+testingOutputAudio vox = do
+    allAudio <- loadVoxAudio vox
+    let somePhoneAudio = M.lookup "b.wav" allAudio  
+    case somePhoneAudio of
+        Just audios -> do
+            let audioFormat = B.toLazyByteString audios
+            L.writeFile "temp_audio.wav" audioFormat
+            callCommand "afplay temp_audio.wav"
+        Nothing -> putStrLn "No Phoneme sound in the map found"     --[ when running this it doesnt output any sound but give this string as a result]
 
 
 -- | Checks using extension if file has the WAV format.
