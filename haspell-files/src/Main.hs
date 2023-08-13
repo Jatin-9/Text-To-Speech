@@ -17,4 +17,5 @@ main = do
   --Speak the phonemes
   --putStrLn (intercalate "; " (intercalate [", "] phonemes))
   speak voiceName phonemes
-  testingOutputAudio voiceName
+  -- testingOutputAudio
+  -- testGetAudioData

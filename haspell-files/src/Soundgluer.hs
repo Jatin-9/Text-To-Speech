@@ -63,6 +63,13 @@ wordToSpeech :: M.Map Phoneme B.Builder    -- ^ Phone-(audio data) map
 wordToSpeech phoneSpeechMap word =
     mconcat $ map (phoneSpeechMap M.!) word
 
+-- even this not playing 
+testWordToSpeech :: IO ()
+testWordToSpeech = do
+   allAudio <- loadVoxAudio "luknw"
+   let phonemeAudio= wordToSpeech allAudio ["b" , "d" , "g" , "h"]
+   L.writeFile "testWordToSpeech.wav" (B.toLazyByteString phonemeAudio)    
+
 -- | Loads lazily phonems of a given voice into memory.
 loadVoxAudio :: String                        -- ^ Language name with a matching folder in langsDirectory
               -> IO (M.Map Phoneme B.Builder)    -- ^ Map from phonem name to its audio data as a lazy ByteString Builder
@@ -75,21 +82,42 @@ loadVoxAudio vox =
         --putStrLn (intercalate "," dirWaves)
         phoneAudioList <- zip <$> (return $ map phoneName dirWaves)
                               <*> forM dirWaves (getAudioData voxDirectory)
-        --let phoneNames = map fst phoneAudioList
-        --putStrLn(intercalate "," phoneNames) --[this is working fine the phoneName is correct]                     
+        -- let phoneNames = map fst phoneAudioList
+        -- putStrLn(intercalate "," phoneNames) --[this is working fine the phoneName is correct]                     
         return $ M.fromList phoneAudioList
      
--- no output is found means for a given a phoneme it is not able to fetch an audio
-testingOutputAudio :: FilePath -> IO()
-testingOutputAudio vox = do
-    allAudio <- loadVoxAudio vox
-    let somePhoneAudio = M.lookup "b.wav" allAudio  
-    case somePhoneAudio of
-        Just audios -> do
-            let audioFormat = B.toLazyByteString audios
-            L.writeFile "temp_audio.wav" audioFormat
-            callCommand "afplay temp_audio.wav"
-        Nothing -> putStrLn "No Phoneme sound in the map found"     --[ when running this it doesnt output any sound but give this string as a result]
+-- -- no output is found means for a given a phoneme it is not able to fetch an audio
+-- testingOutputAudio :: FilePath -> IO()
+-- testingOutputAudio vox = do
+--     allAudio <- loadVoxAudio vox
+--     let somePhoneAudio = M.lookup "b.wav" allAudio  
+--     case somePhoneAudio of
+--         Just audios -> do
+--             let audioFormat = B.toLazyByteString audios
+--             L.writeFile "temp_audio.wav" audioFormat
+--             callCommand "afplay temp_audio.wav"
+--         Nothing -> putStrLn "No Phoneme sound in the map found"     --[ when running this it doesnt output any sound but give this string as a result]
+
+
+-- tried to play all the phoneme one by one but failed
+-- testingOutputAudio :: IO()
+-- testingOutputAudio = do
+--     allAudio <- loadVoxAudio "luknz"
+--     -- get all keys (phoneme names) from the map
+--     let phonemes = M.keys allAudio
+
+--     forM_ phonemes $ \phoneme -> do
+--         let somePhoneAudio = M.lookup phoneme allAudio
+--         case somePhoneAudio of
+--             Just audios -> do
+--                 let audioData = B.toLazyByteString audios
+--                 L.writeFile "temp_audio.wav" audioData
+--                 putStrLn $ "Playing audio for phoneme: " ++ phoneme
+--                 callCommand "afplay temp_audio.wav"
+--                 doesFileExist "temp_audio.wav" >>= \exists -> 
+--                   when (not exists) $ putStrLn "File does not exist!"
+--             Nothing -> putStrLn $ "No audio found for phoneme: " ++ phoneme
+
 
 
 -- | Checks using extension if file has the WAV format.
@@ -124,6 +152,14 @@ getAudioData voxDirectory fileName = do
     let waveHeaderLength = fromIntegral $ waveDataOffset waveMetadata
     return $ B.lazyByteString
            $ L.drop waveHeaderLength waveData
+
+-- this is not working either
+
+-- testGetAudioData :: IO ()
+-- testGetAudioData = do
+--     audioDataBuilder <- getAudioData "../vox/luknz" "b.wav"
+--     L.writeFile "testGetAudioData.wav" (B.toLazyByteString audioDataBuilder)
+--     callCommand "afplay testGetAudioData.wav"          
 
 -- | Utility for generating a wave file containing only a header and no audio data.
 generateHeader :: IO ()
