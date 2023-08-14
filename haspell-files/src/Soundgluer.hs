@@ -56,6 +56,11 @@ glueSpeech vox words filePath
             let phonesWriter = flip B.hPutBuilder gluedSpeech
             writeWaveFile (filePath ++ waveExtension) waveHeader phonesWriter
 
+-- ## test   
+--did test for the glueSpeech but faced the same white noise but only this works as it is atleast palying the sound 
+
+--glueSpeech "lunkz" [["b", "d"], ["h", "b"]] "outputFileName"            
+
 -- | Maps word to speech using provided map
 wordToSpeech :: M.Map Phoneme B.Builder    -- ^ Phone-(audio data) map
             -> [Phoneme]                   -- ^ Mapped word
@@ -63,7 +68,9 @@ wordToSpeech :: M.Map Phoneme B.Builder    -- ^ Phone-(audio data) map
 wordToSpeech phoneSpeechMap word =
     mconcat $ map (phoneSpeechMap M.!) word
 
+-- ## test  
 -- even this not playing 
+
 testWordToSpeech :: IO ()
 testWordToSpeech = do
    allAudio <- loadVoxAudio "luknw"
@@ -82,11 +89,17 @@ loadVoxAudio vox =
         --putStrLn (intercalate "," dirWaves)
         phoneAudioList <- zip <$> (return $ map phoneName dirWaves)
                               <*> forM dirWaves (getAudioData voxDirectory)
+        
+        -- ## test
+        -- taking the phoneme part from the phoneAudioList (Phoneme, Audio Dta for that particular phoneme)
+         
         -- let phoneNames = map fst phoneAudioList
         -- putStrLn(intercalate "," phoneNames) --[this is working fine the phoneName is correct]                     
         return $ M.fromList phoneAudioList
-     
+
+-- ## test      
 -- -- no output is found means for a given a phoneme it is not able to fetch an audio
+
 -- testingOutputAudio :: FilePath -> IO()
 -- testingOutputAudio vox = do
 --     allAudio <- loadVoxAudio vox
@@ -99,24 +112,26 @@ loadVoxAudio vox =
 --         Nothing -> putStrLn "No Phoneme sound in the map found"     --[ when running this it doesnt output any sound but give this string as a result]
 
 
+-- ## test  
 -- tried to play all the phoneme one by one but failed
--- testingOutputAudio :: IO()
--- testingOutputAudio = do
---     allAudio <- loadVoxAudio "luknz"
---     -- get all keys (phoneme names) from the map
---     let phonemes = M.keys allAudio
 
---     forM_ phonemes $ \phoneme -> do
---         let somePhoneAudio = M.lookup phoneme allAudio
---         case somePhoneAudio of
---             Just audios -> do
---                 let audioData = B.toLazyByteString audios
---                 L.writeFile "temp_audio.wav" audioData
---                 putStrLn $ "Playing audio for phoneme: " ++ phoneme
---                 callCommand "afplay temp_audio.wav"
---                 doesFileExist "temp_audio.wav" >>= \exists -> 
---                   when (not exists) $ putStrLn "File does not exist!"
---             Nothing -> putStrLn $ "No audio found for phoneme: " ++ phoneme
+testingOutputAudio :: IO()
+testingOutputAudio = do
+    allAudio <- loadVoxAudio "luknz"
+    -- get all keys (phoneme names) from the map
+    let phonemes = M.keys allAudio
+
+    forM_ phonemes $ \phoneme -> do
+        let somePhoneAudio = M.lookup phoneme allAudio
+        case somePhoneAudio of
+            Just audios -> do
+                let audioData = B.toLazyByteString audios
+                L.writeFile "temp_audio.wav" audioData
+                putStrLn $ "Playing audio for phoneme: " ++ phoneme
+                callCommand "afplay temp_audio.wav"
+                doesFileExist "temp_audio.wav" >>= \exists -> 
+                  when (not exists) $ putStrLn "File does not exist!"
+            Nothing -> putStrLn $ "No audio found for phoneme: " ++ phoneme
 
 
 
@@ -153,16 +168,28 @@ getAudioData voxDirectory fileName = do
     return $ B.lazyByteString
            $ L.drop waveHeaderLength waveData
 
+-- ## test  
 -- this is not working either
 
--- testGetAudioData :: IO ()
--- testGetAudioData = do
---     audioDataBuilder <- getAudioData "../vox/luknz" "b.wav"
---     L.writeFile "testGetAudioData.wav" (B.toLazyByteString audioDataBuilder)
---     callCommand "afplay testGetAudioData.wav"          
+testGetAudioData :: IO ()
+testGetAudioData = do
+    audioDataBuilder <- getAudioData "../vox/luknz" "b.wav"
+    L.writeFile "testGetAudioData.wav" (B.toLazyByteString audioDataBuilder)
+    --callCommand "afplay testGetAudioData.wav"          
 
 -- | Utility for generating a wave file containing only a header and no audio data.
 generateHeader :: IO ()
 generateHeader = do
     a <- readWaveFile $ (getVoxPath stdVox) ++ pathSeparator ++ "-.wav"
     writeWaveFile waveHeaderPath a (\h -> return ())
+
+-- ## test  
+-- noticed that I can find this directory but when i tried to play it it shows error " AudioFileOpen failed ('typ?') "
+
+concatenate :: IO ()
+concatenate = do
+    bAudio <- getAudioData "../vox/luknz/"  "b.wav"
+    let combinedAudio = bAudio `mappend` bAudio
+    L.writeFile "combinedB.wav" (B.toLazyByteString combinedAudio)  
+
+
