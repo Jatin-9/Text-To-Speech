@@ -80,14 +80,14 @@ wordToSpeech :: M.Map Phoneme B.Builder    -- ^ Phone-(audio data) map
             -> [Phoneme]                   -- ^ Mapped word
             -> B.Builder                 -- ^ Lazy ByteString Builder of audio data
 wordToSpeech phoneSpeechMap word =
-    mconcat $ map (phoneSpeechMap M.!) word
+    foldr (\phone acc -> phoneSpeechMap M.! phone `mappend` acc) mempty word
 
 -- ## test  
 -- even this not playing 
 
 testWordToSpeech :: [Phoneme] -> IO ()
 testWordToSpeech ps = do
-   allAudio <- loadVoxAudio "luknz"
+   allAudio <- loadVoxAudio "luknb"
    let phonemeAudio = wordToSpeech allAudio ps
    -- L.writeFile "testWordToSpeech.wav" phonemeAudio
    waveHeader <- readWaveFile waveHeaderPath
@@ -206,6 +206,6 @@ concatenate :: IO ()
 concatenate = do
     bAudio <- getAudioData "../vox/luknz/"  "b.wav"
     let combinedAudio = bAudio `mappend` bAudio
-    L.writeFile "combinedB.wav" (B.toLazyByteString combinedAudio)  
+    writeWaveFile"combinedB.wav" defaultWave(flip B.hPutBuilder combinedAudio)  
 
 
