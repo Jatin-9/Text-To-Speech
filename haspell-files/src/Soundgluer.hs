@@ -13,6 +13,19 @@ import Codec.Audio.Wave
 import HspTypes (Phoneme)
 import Data.List
 
+defaultWave :: Wave
+defaultWave =
+  Wave
+    { waveFileFormat = WaveVanilla,
+      waveSampleRate = 44100,
+      waveSampleFormat = SampleFormatPcmInt 16,
+      waveChannelMask = speakerStereo,
+      waveDataOffset = 0,
+      waveDataSize = 0,
+      waveSamplesTotal = 0,
+      waveOtherChunks = []
+    }
+
 -- | Extension of audio files representing phonems.
 waveExtension :: FilePath
 waveExtension = ".wav"
@@ -54,12 +67,13 @@ glueSpeech vox words filePath
             let gluedSpeech = foldr appendWord (mempty :: B.Builder)
                             $ map (wordToSpeech phoneSpeechMap) words
             let phonesWriter = flip B.hPutBuilder gluedSpeech
-            writeWaveFile (filePath ++ waveExtension) waveHeader phonesWriter
+            --made changes to writeWaveFile 
+            writeWaveFile (filePath ++ waveExtension) defaultWave phonesWriter 
 
 -- ## test   
 --did test for the glueSpeech but faced the same white noise but only this works as it is atleast palying the sound 
 
---glueSpeech "lunkz" [["b", "d"], ["h", "b"]] "outputFileName"            
+--glueSpeech "luknz" [["b", "d"], ["h", "b"]] "outputFileName"            
 
 -- | Maps word to speech using provided map
 wordToSpeech :: M.Map Phoneme B.Builder    -- ^ Phone-(audio data) map
@@ -71,11 +85,13 @@ wordToSpeech phoneSpeechMap word =
 -- ## test  
 -- even this not playing 
 
-testWordToSpeech :: IO ()
-testWordToSpeech = do
-   allAudio <- loadVoxAudio "luknw"
-   let phonemeAudio= wordToSpeech allAudio ["b" , "d" , "g" , "h"]
-   L.writeFile "testWordToSpeech.wav" (B.toLazyByteString phonemeAudio)    
+testWordToSpeech :: [Phoneme] -> IO ()
+testWordToSpeech ps = do
+   allAudio <- loadVoxAudio "luknz"
+   let phonemeAudio = wordToSpeech allAudio ps
+   -- L.writeFile "testWordToSpeech.wav" phonemeAudio
+   waveHeader <- readWaveFile waveHeaderPath
+   writeWaveFile "testWordToSpeech.wav" defaultWave (flip B.hPutBuilder phonemeAudio)
 
 -- | Loads lazily phonems of a given voice into memory.
 loadVoxAudio :: String                        -- ^ Language name with a matching folder in langsDirectory
@@ -91,8 +107,7 @@ loadVoxAudio vox =
                               <*> forM dirWaves (getAudioData voxDirectory)
         
         -- ## test
-        -- taking the phoneme part from the phoneAudioList (Phoneme, Audio Dta for that particular phoneme)
-         
+        -- taking the phoneme part from the phoneAudioList (Phoneme, Audio Dta for that particular phoneme) 
         -- let phoneNames = map fst phoneAudioList
         -- putStrLn(intercalate "," phoneNames) --[this is working fine the phoneName is correct]                     
         return $ M.fromList phoneAudioList
@@ -100,38 +115,39 @@ loadVoxAudio vox =
 -- ## test      
 -- -- no output is found means for a given a phoneme it is not able to fetch an audio
 
--- testingOutputAudio :: FilePath -> IO()
--- testingOutputAudio vox = do
---     allAudio <- loadVoxAudio vox
---     let somePhoneAudio = M.lookup "b.wav" allAudio  
---     case somePhoneAudio of
---         Just audios -> do
---             let audioFormat = B.toLazyByteString audios
---             L.writeFile "temp_audio.wav" audioFormat
---             callCommand "afplay temp_audio.wav"
---         Nothing -> putStrLn "No Phoneme sound in the map found"     --[ when running this it doesnt output any sound but give this string as a result]
+testingOutputAudio :: FilePath -> IO()
+testingOutputAudio vox = do
+    allAudio <- loadVoxAudio vox
+    let somePhoneAudio = M.lookup "b.wav" allAudio 
+    case somePhoneAudio of
+        Just audios -> do
+            let audioFormat = audios
+            waveHeader <- readWaveFile waveHeaderPath
+            writeWaveFile "temp_audio.wav" defaultWave (flip B.hPutBuilder audioFormat)
+            --callCommand "afplay temp_audio.wav"
+        Nothing -> putStrLn "No Phoneme sound in the map found"     --[ when running this it doesnt output any sound but give this string as a result]
 
 
 -- ## test  
 -- tried to play all the phoneme one by one but failed
 
-testingOutputAudio :: IO()
-testingOutputAudio = do
-    allAudio <- loadVoxAudio "luknz"
-    -- get all keys (phoneme names) from the map
-    let phonemes = M.keys allAudio
+-- testingOutputAudio :: IO()
+-- testingOutputAudio = do
+--     allAudio <- loadVoxAudio "luknz"
+--     -- get all keys (phoneme names) from the map
+--     let phonemes = M.keys allAudio
 
-    forM_ phonemes $ \phoneme -> do
-        let somePhoneAudio = M.lookup phoneme allAudio
-        case somePhoneAudio of
-            Just audios -> do
-                let audioData = B.toLazyByteString audios
-                L.writeFile "temp_audio.wav" audioData
-                putStrLn $ "Playing audio for phoneme: " ++ phoneme
-                callCommand "afplay temp_audio.wav"
-                doesFileExist "temp_audio.wav" >>= \exists -> 
-                  when (not exists) $ putStrLn "File does not exist!"
-            Nothing -> putStrLn $ "No audio found for phoneme: " ++ phoneme
+--     forM_ phonemes $ \phoneme -> do
+--         let somePhoneAudio = M.lookup phoneme allAudio
+--         case somePhoneAudio of
+--             Just audios -> do
+--                 let audioData = B.toLazyByteString audios
+--                 L.writeFile "temp_audio.wav" audioData
+--                 putStrLn $ "Playing audio for phoneme: " ++ phoneme
+--                 callCommand "afplay temp_audio.wav"
+--                 doesFileExist "temp_audio.wav" >>= \exists -> 
+--                   when (not exists) $ putStrLn "File does not exist!"
+--             Nothing -> putStrLn $ "No audio found for phoneme: " ++ phoneme
 
 
 
