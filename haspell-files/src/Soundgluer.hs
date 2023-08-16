@@ -71,6 +71,7 @@ glueSpeech vox words filePath
             writeWaveFile (filePath ++ waveExtension) defaultWave phonesWriter 
 
 -- The quick brown fox jumps over the lazy dog
+
 -- ## test   
 --did test for the glueSpeech but faced the same white noise but only this works as it is atleast palying the sound 
 
