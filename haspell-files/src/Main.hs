@@ -11,7 +11,7 @@ main :: IO ()
 main = do
   let languageId = "eng"  -- assuming English language
   let voiceName = "luknz"  -- assuming a 'default' voice
-  let inputText = " hb b b "
+  let inputText = " b r bro "
   -- Convert the input text to phonemes
   phonemes <- phonemize languageId inputText
   --Speak the phonemes
