@@ -10,8 +10,8 @@ import Data.List
 main :: IO ()
 main = do
   let languageId = "eng"  -- assuming English language
-  let voiceName = "luknz"  -- assuming a 'default' voice
-  let inputText = " b r bro "
+  let voiceName = "voice"  -- assuming a 'default' voice
+  let inputText = " hello world "
   -- Convert the input text to phonemes
   phonemes <- phonemize languageId inputText
   --Speak the phonemes
