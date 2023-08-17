@@ -41,7 +41,7 @@ ee -> ee
 oo -> oo
 se -> se
 goo -> goo
-ce -> se
+ce -> s
 lee -> lee
 flee -> flee
 or -> or
@@ -50,8 +50,12 @@ th -> ð
 no -> no
 ar -> r
 oa -> oa
-
-TOO DO -- -- 
-
 oi -> oi
+ure -> ure
 re -> re
+
+
+c -> k
+c -> s
+
+

@@ -1,2 +1,6 @@
-
+<c Vow1>,c,<c Vow1> -> $0,k,$1
+c,<c Vow1> -> k,$0
+<c Vow1>,c -> $0,k
+<c Vow2>,c,<c Vow2> -> $0,s,$1
+c,<c Vow2> -> s,$0
 -,- -> -
