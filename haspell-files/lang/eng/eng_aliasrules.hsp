@@ -7,4 +7,9 @@ th,<vow> -> ð,$0
 th,<cons> -> θ,$0
 <vow>,th,<vow> -> $0,ð,$1
 <cons>,th -> $0,θ
+y,<cons> -> y,$0
+<sp>,y -> $0,i
+<cons>,y -> $0,i
+<cons>,y,<cons> -> $0,i,$1
+<cons>,y,<vow> -> $0,i,$1
 -,- -> -
