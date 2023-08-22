@@ -22,4 +22,9 @@ ea,r,<cons> -> eə,$0,$1
 <cons> ,ar -> $0,eə
 
 ow,<vow> -> oʊ,$0
+
+<cons>,gh -> $0
+<vow>,gh -> $0
+gh,<cons> -> ghh,$0
+gh,<vow> -> ghh,$0
 -,- -> -

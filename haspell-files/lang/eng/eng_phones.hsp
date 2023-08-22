@@ -51,7 +51,7 @@ no -> no
 ar -> r
 
 
-re -> re
+
 
 ch ->ch
 cl -> cl
@@ -72,6 +72,8 @@ tr -> tr
 fr -> fr
 dr -> dr
 cr -> cr
+gh -> gh
+gh ->ghh
 
 c -> s
 c -> k
@@ -82,7 +84,7 @@ ow -> aʊ
 ou -> aʊ
 aɪ -> aɪ
 ai -> eɪ
-ay -> eɪ
+ey -> eɪ
 ei -> eɪ
 ea -> eɪ
 eə -> eə
@@ -97,6 +99,7 @@ oi -> ɔɪ
 ure -> ʊə
 
 ass -> ass
+
 
 
 
