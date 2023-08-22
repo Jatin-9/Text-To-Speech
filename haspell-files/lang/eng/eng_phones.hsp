@@ -35,13 +35,13 @@ rl -> rl
 rld -> rld
 the -> the
 mi -> ma
-le -> le
-lea -> lea (not done yet)
+
 ee -> ee
 oo -> oo
 se -> se
 goo -> goo
 ce -> s
+le -> le
 lee -> lee
 flee -> flee
 or -> or
@@ -49,6 +49,7 @@ th -> θ
 th -> ð
 no -> no
 ar -> r
+
 
 
 
@@ -100,6 +101,12 @@ oi -> ɔɪ
 ure -> ʊə
 
 ass -> ass
+
+
+SILENT E RULE
+
+ge -> ʤ
+le -> əl
 
 
 

@@ -27,4 +27,5 @@ ow,<vow> -> oʊ,$0
 <vow>,gh -> $0
 gh,<cons> -> ghh,$0
 gh,<vow> -> ghh,$0
+<cons>,le -> $0,əl
 -,- -> -
