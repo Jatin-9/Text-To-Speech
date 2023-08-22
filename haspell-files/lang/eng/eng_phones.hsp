@@ -49,6 +49,7 @@ th -> θ
 th -> ð
 no -> no
 ar -> r
+ff -> f
 
 
 
@@ -106,8 +107,8 @@ ass -> ass
 SILENT E RULE
 
 ge -> ʤ
-le -> əl
-
-
-
+ue -> u
+ve -> ve
+ve -> v
+se -> s
 
