@@ -31,8 +31,10 @@ emptyWave = "../vox/std/-"
 
 -- | Name of the .tmp file which w
 tmpFileName :: FilePath
-tmpFileName = ".tmp"
+tmpFileName = "/Users/jatinkandpal/git/text-to-speech/haspell-files/Final_Output/output"
 
 -- | Plays the given wave file
 playFile :: String -> IO()
 playFile file = callProcess "afplay" [file ++ waveExtension]
+
+
