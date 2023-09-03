@@ -1,0 +1,34 @@
+<c Vow1>,c,<c Vow2> -> $0,s,$1
+<c Vow1>,c -> $0,k
+c,<c Vow1> -> k,$0
+c,<c Vow2> -> s,$0
+<c Vow1>,c,<c Vow1> -> $0,k,$1
+
+th,<vow> -> ð,$0
+th,<cons> -> θ,$0
+<vow>,th,<vow> -> $0,ð,$1
+<cons>,th -> $0,θ
+
+y,<cons> -> y,$0
+<sp>,y -> $0,i
+<cons>,y -> $0,aɪ
+<cons>,y,<cons> -> $0,i,$1
+<cons>,y,<vow> -> $0,i,$1
+
+<cons>,i,<cons> -> $0,aɪ,$1
+i,<cons> -> aɪ,$0
+
+ea,r,<cons> -> eə,$0,$1
+<cons> ,ar -> $0,eə
+
+ow,<vow> -> oʊ,$0
+
+<cons>,gh -> $0
+<vow>,gh -> $0
+gh,<cons> -> ghh,$0
+gh,<vow> -> ghh,$0
+
+<cons>,ue -> $0,u
+<cons>,se -> $0,s
+<vow>,ve -> $0,v
+-,- -> -
