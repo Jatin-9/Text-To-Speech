@@ -12,6 +12,8 @@ soundTest = do
   let languageId = "eng"  -- assuming English language
   let inputText = "hello"
   let filePath = "/Users/jatinkandpal/git/text-to-speech/Webpage/Final_Output/output"
+  
+
   -- Convert the input text to phonemes
   phonemes <- phonemize languageId inputText
   --speak voiceName phonemes

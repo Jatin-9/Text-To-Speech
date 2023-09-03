@@ -30,7 +30,11 @@ main = Scotty.scotty 3000 $ do
        Scotty.html $ renderHtml
          myForm
     post "/convert" $ do
-       -- languageId <- param "languageId"
-       -- inputText <- param "inputText"
-       _ <- return soundTest
-       text $ "Done!"
+       languageId <- param "language" :: ActionM String
+       inputText <- param "input"     :: ActionM String
+       return soundTest 
+       text $ TL.pack languageId <> " " <> TL.pack inputText
+       
+
+   
+

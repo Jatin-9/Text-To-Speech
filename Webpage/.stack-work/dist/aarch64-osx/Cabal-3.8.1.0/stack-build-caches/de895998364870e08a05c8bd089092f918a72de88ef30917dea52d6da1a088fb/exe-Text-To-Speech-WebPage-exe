@@ -17,14 +17,14 @@
 /Users/jatinkandpal/git/text-to-speech/Webpage/app/HspTypes.hs:
   hash: 8ab36d7e94509b22c82815445f93398162368087690c123b867c25558d2508ff
 /Users/jatinkandpal/git/text-to-speech/Webpage/app/Main.hs:
-  hash: f81279f6738e449e205571948420d1a34888c21a00ec6822d65e5cf911bd600d
+  hash: db2b4da9c790aef77c144a12d1ee8048d97eee9522166a61e66927b0f7508698
 /Users/jatinkandpal/git/text-to-speech/Webpage/app/Mains.hs:
-  hash: b5a1c30491140f1f07d359dedd6f668557582f7f66c5d3cfbfe211c44bded327
+  hash: 33f776db27a5de452414fbdbdf146928bb5e8cb58d9fd6087010a1edc13b8eae
 /Users/jatinkandpal/git/text-to-speech/Webpage/app/Phonemizer.hs:
   hash: f8cd8ffc4cabfc439a545676271158368ec2daa70385703d41a45136edd352e6
 /Users/jatinkandpal/git/text-to-speech/Webpage/app/Soundgluer.hs:
   hash: a5b36c6264c01f3305f36f1c71f65948dd42bb4e40fe3206e343281642c6137c
 /Users/jatinkandpal/git/text-to-speech/Webpage/app/Speaker.hs:
-  hash: 103cef419b0ca3a27d99a3626f59282740a91c6b4afb445db2a22676d1bbe101
+  hash: 2ead36e400a0d7397f00c9a46203134c2638130a810dd6cf7fe27d6693ea2fae
 /Users/jatinkandpal/git/text-to-speech/Webpage/package.yaml:
   hash: a27b1e7b0495c22229d80d00afb72f728676115342001573ab2fd1e6348b971b

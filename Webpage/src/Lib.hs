@@ -25,10 +25,10 @@ myForm = H.docTypeHtml $ do
          H.div H.! class_(H.stringValue "small-box") $ do
            H.form H.! A.action (H.stringValue "convert") H.! A.method (H.stringValue"post") $ do
             H.label $ H.toHtml "  "
-            H.textarea H.! A.id (H.stringValue "inputText") H.! A.required (H.stringValue "required") H.! A.rows (H.stringValue "15") H.! A.cols (H.stringValue "20") $ H.toHtml "Lets start converting"
+            H.textarea H.! A.type_(H.stringValue "text") H.! A.name (H.stringValue "input") H.! A.required (H.stringValue "required") H.! A.rows (H.stringValue "15") H.! A.cols (H.stringValue "20") $ H.toHtml "Lets start converting"
             H.br
             H.label $ H.toHtml "Select Language: "
-            H.select H.! A.id (H.stringValue "languageId") $ do
+            H.select H.! A.name (H.stringValue "language") H.! A.id (H.stringValue "language") $ do
                 H.option H.! A.value (H.stringValue "eng") $ H.toHtml "English"
                 H.option H.! A.value (H.stringValue "pol") $ H.toHtml "Polish"
             H.br
