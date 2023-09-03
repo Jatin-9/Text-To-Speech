@@ -25,6 +25,11 @@ dependencies:
 - scotty >=0.12 && <0.13
 - text
 - wai-middleware-static
+- bytestring
+- cereal
+- containers
+- directory
+- process
 
 ghc-options:
 - -Wall

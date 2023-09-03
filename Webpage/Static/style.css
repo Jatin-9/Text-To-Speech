@@ -28,7 +28,7 @@ h1 {
   border-width: thick;
   padding: 20px
   max-width: 500px;
-  background-color: white;
+  background-color: green;
   text-align: center;
   box-shadow: 15px 15px #B0B0B0;
   border-radius: 25px;
@@ -41,7 +41,7 @@ textarea {
   max-width: 600px;
   font-size: 16px;
   border-style: solid;
-  border-radius: 50px;
+  border-radius: 20px;
   background-color: pink;
   margin-top: 10px;
 }
