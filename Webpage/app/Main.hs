@@ -3,6 +3,7 @@ module Main (main) where
 import Lib
 import Web.Scotty as Scotty
 import Mains
+import Control.Monad.IO.Class as IO
 
 import qualified Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
@@ -32,7 +33,7 @@ main = Scotty.scotty 3000 $ do
     post "/convert" $ do
        languageId <- param "language" :: ActionM String
        inputText <- param "input"     :: ActionM String
-       return soundTest 
+       IO.liftIO $ soundTest languageId inputText
        text $ TL.pack languageId <> " " <> TL.pack inputText
        
 
