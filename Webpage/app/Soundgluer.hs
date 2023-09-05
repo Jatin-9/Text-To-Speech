@@ -26,6 +26,8 @@ defaultWave =
       waveOtherChunks = []
     }
 
+
+
 -- | Extension of audio files representing phonems.
 waveExtension :: FilePath
 waveExtension = ".wav"
@@ -53,9 +55,10 @@ waveHeaderPath = voxDirectory ++ pathSeparator ++ stdVox ++ pathSeparator ++ "he
 -- | Converts a list of phonemized words into an audio representation in some voice and writes it to a file.
 glueSpeech :: String        -- ^ Name of the voice. It should match the name of the voice folder in the voxDirectory.
            -> [[Phoneme]]     -- ^ List of phonemized words
-           -> String        -- ^ Path of the output file
+           -> String       -- ^ Path of the output file
+           -> wave
            -> IO ()
-glueSpeech vox words filePath
+glueSpeech vox words filePath waveHeader
         | null words = return ()
         | otherwise = do
             --putStrLn waveHeaderPath
@@ -69,7 +72,7 @@ glueSpeech vox words filePath
             let phonesWriter = flip B.hPutBuilder gluedSpeech
             
             --made changes to writeWaveFile
-            writeWaveFile (filePath ++ waveExtension) defaultWave phonesWriter
+            writeWaveFile (filePath ++ waveExtension) waveHeader phonesWriter
 
 
 -- The quick brown fox jumps over the lazy dog
