@@ -19,5 +19,3 @@ soundTest languageId inputText = do
  
   --Speak the phonemes
   --putStrLn (intercalate "; " (intercalate [", "] phonemes))
-  --testingOutputAudio voiceName
-  -- testGetAudioData

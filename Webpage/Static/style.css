@@ -1,48 +1,77 @@
 body {
   text-align: center;
-  color: blue;
-  background-color:red;
-
 }
+
 form {
   text-align: center;
   color: red;
-  background-color: white;
-}
-h1 {
-  color: blue;
-  text-transform: uppercase;
+  background-color: #D8BFD8;
+  margin-top: 60px;
+  width :1000px;
 }
 
 .big-box {
   display: flex;
-  justify-content: center;
+  margin-top: 40px;
+  height: 80vh;
   align-items: centre;
-  height: 60vh;
+  justify-content: center;
 
 
 }
 
 .small-box {
   border-style: solid black;
-  border-width: thick;
-  padding: 20px
-  max-width: 500px;
-  background-color: green;
+  background-color: #D8BFD8;
   text-align: center;
-  box-shadow: 15px 15px #B0B0B0;
+  box-shadow: 15px 15px #E6E6FA;
   border-radius: 25px;
-
 
 }
 textarea {
   resize: none;
   width: 100%;
-  max-width: 600px;
   font-size: 16px;
   border-style: solid;
   border-radius: 20px;
-  background-color: pink;
-  margin-top: 10px;
+  background-color: #FFFFFF;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 300px;
+  width: 800px;
+  border-width: 3px;
+}
+select {
+  background-color: #DCDCDC;
+  height: 3em;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 4px;
+  border-width: thin;
 }
 
+
+.elementals {
+  display: flex;
+  flex-flow: row;
+  background-color: #D8BFD8;
+  align-items: center;
+  justify-content: center;
+  padding:12px;
+  gap: 35px;
+}
+
+.submit {
+  background-color: #DCDCDC;
+  padding: 9px;
+  border-radius: 5px;
+  border-width: thin;
+}
+.label {
+  font-size: 35px;
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+
+}
