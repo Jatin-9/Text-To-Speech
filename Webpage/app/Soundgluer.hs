@@ -66,7 +66,7 @@ glueSpeech vox words filePath waveHeaders
             putStrLn (intercalate ";" (intercalate [","] words))
             phoneSpeechMap <- loadVoxAudio vox
             --phoneAudioMap <- loadVoxAudio vox
-            --waveHeader <- readWaveFile waveHeaderPath
+            --waveHeader <- readWaveFile waveHeaderPath [needed to remove as it was overriding the WaveHeader argument sent from Mains.hs module]
             let appendWord w1 w2 = w1 `mappend` (phoneSpeechMap M.! "-") `mappend` w2
             let gluedSpeech = foldr appendWord (mempty :: B.Builder)
                             $ map (wordToSpeech phoneSpeechMap) words
