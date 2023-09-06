@@ -30,12 +30,13 @@ main = Scotty.scotty 3000 $ do
     Scotty.get(capture "/") $ do
        Scotty.html $ renderHtml
          myForm
-    post "/convert" $ do
+    post "/" $ do
        languageId <- param "language" :: ActionM String
        inputText <- param "input"     :: ActionM String
        IO.liftIO $ soundTest languageId inputText
-
-       text $ TL.pack languageId <> " " <> TL.pack inputText
+       Scotty.html $ renderHtml
+        myForm
+       --text $ TL.pack languageId <> " " <> TL.pack inputText
     --soundRoute
        
 

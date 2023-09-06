@@ -27,9 +27,9 @@ myForm = H.docTypeHtml $ do
     H.body $ do
         H.div H.! class_(H.stringValue "big-box") $ do
          H.div H.! class_(H.stringValue "small-box") $ do
-           H.form H.! A.action (H.stringValue "convert") H.! A.method (H.stringValue"post") $ do
-            H.label $ H.toHtml "  "
-            H.textarea H.! A.type_(H.stringValue "text") H.! A.name (H.stringValue "input") H.! A.required (H.stringValue "required") H.! A.rows (H.stringValue "15") H.! A.cols (H.stringValue "20") $ H.toHtml "Lets start converting"
+           H.form H.! A.action (H.stringValue "") H.! A.method (H.stringValue"post") $ do
+            H.label $ H.toHtml "Text-to-Speech Form "
+            H.textarea H.! A.type_(H.stringValue "text") H.! A.name (H.stringValue "input") H.! A.required (H.stringValue "required") H.! A.rows (H.stringValue "15") H.! A.cols (H.stringValue "20") $ H.toHtml " "
             H.br
             H.label $ H.toHtml "Select Language: "
             H.select H.! A.name (H.stringValue "language") H.! A.id (H.stringValue "language") $ do
