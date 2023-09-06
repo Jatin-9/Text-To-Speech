@@ -46,36 +46,3 @@ textarea {
   margin-top: 10px;
 }
 
-.controlling-audio {
-  display: flex;
-  justify-content: center;
-  border: 20px;
-  align-items: center;
-}
-
-.audioPlayer {
-  display:none;
-}
-
-.play-button {
-  margin: 0 40 40 20px;
-  visibility: hidden;
-  border-radius: 75px;
-  background-color: pink;
-  align-self: center;
-
-}
-
-.timeline {
-  width: 500px;
-  height: 50px;
-  border-radius: 25px;
-
-}
-
-.submit {
-  border-radius: 50px;
-  margin-right: auto;
-  text-align: center;
-  background-color: #B0B0B0;
-}

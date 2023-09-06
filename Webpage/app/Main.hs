@@ -4,7 +4,7 @@ import Lib
 import Web.Scotty as Scotty
 import Mains
 import Control.Monad.IO.Class as IO
-
+import Codec.Audio.Wave
 import qualified Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
 import Text.Blaze.Html.Renderer.Text(renderHtml)
@@ -18,10 +18,10 @@ cssRoute = Scotty.get "/style.css" $ do
    Scotty.file"/Users/jatinkandpal/git/text-to-speech/Webpage/Static/style.css"
 
 
--- soundRoute :: Scotty.ScottyM ()
--- soundRoute = Scotty.get "/Mains.hs" $ do
---    Scotty.setHeader ("Content-Type") ("text/plain")
---    Scotty.file"/Users/jatinkandpal/git/text-to-speech/Webpage/src/Main.hs"
+--soundRoute :: Scotty.ScottyM ()
+--soundRoute = Scotty.get "/output.wav" $ do
+  -- Scotty.setHeader ("Content-Type") ("audio/wav")
+   --Scotty.file "/Users/jatinkandpal/git/text-to-speech/Webpage/Static/Final_Output/output.wav"
 
 main :: IO ()
 main = Scotty.scotty 3000 $ do
@@ -34,7 +34,9 @@ main = Scotty.scotty 3000 $ do
        languageId <- param "language" :: ActionM String
        inputText <- param "input"     :: ActionM String
        IO.liftIO $ soundTest languageId inputText
+
        text $ TL.pack languageId <> " " <> TL.pack inputText
+    --soundRoute
        
 
    

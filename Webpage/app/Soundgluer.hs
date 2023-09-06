@@ -13,6 +13,7 @@ import Codec.Audio.Wave
 import HspTypes (Phoneme)
 import Data.List
 
+
 defaultWave :: Wave
 defaultWave =
   Wave
@@ -56,23 +57,23 @@ waveHeaderPath = voxDirectory ++ pathSeparator ++ stdVox ++ pathSeparator ++ "he
 glueSpeech :: String        -- ^ Name of the voice. It should match the name of the voice folder in the voxDirectory.
            -> [[Phoneme]]     -- ^ List of phonemized words
            -> String       -- ^ Path of the output file
-           -> wave
+           -> Wave
            -> IO ()
-glueSpeech vox words filePath waveHeader
+glueSpeech vox words filePath waveHeaders
         | null words = return ()
         | otherwise = do
             --putStrLn waveHeaderPath
             putStrLn (intercalate ";" (intercalate [","] words))
             phoneSpeechMap <- loadVoxAudio vox
             --phoneAudioMap <- loadVoxAudio vox
-            waveHeader <- readWaveFile waveHeaderPath
+            --waveHeader <- readWaveFile waveHeaderPath
             let appendWord w1 w2 = w1 `mappend` (phoneSpeechMap M.! "-") `mappend` w2
             let gluedSpeech = foldr appendWord (mempty :: B.Builder)
                             $ map (wordToSpeech phoneSpeechMap) words
             let phonesWriter = flip B.hPutBuilder gluedSpeech
             
             --made changes to writeWaveFile
-            writeWaveFile (filePath ++ waveExtension) waveHeader phonesWriter
+            writeWaveFile (filePath ++ waveExtension) waveHeaders phonesWriter
 
 
 -- The quick brown fox jumps over the lazy dog

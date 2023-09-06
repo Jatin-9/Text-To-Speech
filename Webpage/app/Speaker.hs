@@ -34,7 +34,7 @@ emptyWave = "../vox/std/-"
 
 -- | Name of the .tmp file which w
 tmpFileName :: FilePath
-tmpFileName = "/Users/jatinkandpal/git/text-to-speech/Webpage/Final_Output/output"
+tmpFileName = "/Users/jatinkandpal/git/text-to-speech/Webpage/Static/Final_Output/output"
 
 -- | Plays the given wave file
 playFile :: String -> IO()

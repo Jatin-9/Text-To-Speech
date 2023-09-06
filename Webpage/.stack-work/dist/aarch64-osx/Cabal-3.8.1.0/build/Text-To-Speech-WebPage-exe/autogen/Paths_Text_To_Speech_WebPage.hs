@@ -43,7 +43,7 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 bindir     = "/Users/jatinkandpal/git/text-to-speech/Webpage/.stack-work/install/aarch64-osx/de895998364870e08a05c8bd089092f918a72de88ef30917dea52d6da1a088fb/9.4.5/bin"
-libdir     = "/Users/jatinkandpal/git/text-to-speech/Webpage/.stack-work/install/aarch64-osx/de895998364870e08a05c8bd089092f918a72de88ef30917dea52d6da1a088fb/9.4.5/lib/aarch64-osx-ghc-9.4.5/Text-To-Speech-WebPage-0.1.0.0-GeFgU9vZnki2myGU4BH9Sk-Text-To-Speech-WebPage-exe"
+libdir     = "/Users/jatinkandpal/git/text-to-speech/Webpage/.stack-work/install/aarch64-osx/de895998364870e08a05c8bd089092f918a72de88ef30917dea52d6da1a088fb/9.4.5/lib/aarch64-osx-ghc-9.4.5/Text-To-Speech-WebPage-0.1.0.0-11v0HxMweczBziSXJwmNNo-Text-To-Speech-WebPage-exe"
 dynlibdir  = "/Users/jatinkandpal/git/text-to-speech/Webpage/.stack-work/install/aarch64-osx/de895998364870e08a05c8bd089092f918a72de88ef30917dea52d6da1a088fb/9.4.5/lib/aarch64-osx-ghc-9.4.5"
 datadir    = "/Users/jatinkandpal/git/text-to-speech/Webpage/.stack-work/install/aarch64-osx/de895998364870e08a05c8bd089092f918a72de88ef30917dea52d6da1a088fb/9.4.5/share/aarch64-osx-ghc-9.4.5/Text-To-Speech-WebPage-0.1.0.0"
 libexecdir = "/Users/jatinkandpal/git/text-to-speech/Webpage/.stack-work/install/aarch64-osx/de895998364870e08a05c8bd089092f918a72de88ef30917dea52d6da1a088fb/9.4.5/libexec/aarch64-osx-ghc-9.4.5/Text-To-Speech-WebPage-0.1.0.0"

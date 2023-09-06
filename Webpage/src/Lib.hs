@@ -14,6 +14,10 @@ cssLink = H.link
   H.! A.rel (H.stringValue "stylesheet")
   H.! A.href (H.stringValue "/style.css")
 
+soundRoute :: H.Html
+soundRoute = H.link
+  H.! A.rel (H.stringValue "audio")
+  H.! A.href(H.stringValue "/Static/Final_Output/output.wav")
 
 myForm :: H.Html
 myForm = H.docTypeHtml $ do
@@ -33,10 +37,5 @@ myForm = H.docTypeHtml $ do
                 H.option H.! A.value (H.stringValue "pol") $ H.toHtml "Polish"
             H.br
             H.button H.! A.type_ (H.stringValue "submit") H.! A.class_ (H.stringValue "submit") $ H.toHtml "Convert"
-
-           H.div H.! class_(H.stringValue "controlling-audio") $ do
-            H.audio  H.! A.type_ (H.stringValue"audioPlayer") H.! A.controls (H.stringValue" ") $ do
-             H.source H.! A.src (H.stringValue " ") H.! A.type_ (H.stringValue" audio/mpeg")
-            -- H.button H.! A.type_(H.stringValue "button") H.! A.id (H.stringValue "play-button") $ H.toHtml"Play" [no need for play button]
-            H.div H.! A.class_ (H.stringValue "timeline") $ do
-             H.div H.! A.class_ (H.stringValue "progress") $ H.toHtml ""
+            H.audio H.! A.controls (H.stringValue "controls") $ H.toHtml $ do
+                H.source H.! A.src (H.stringValue "/Users/jatinkandpal/git/text-to-speech/Webpage/Static/Final_Output/output.wav") H.! A.type_ (H.stringValue "audio/wav") 

@@ -110,6 +110,16 @@
   (major1) == 0 && (major2) <  9 || \
   (major1) == 0 && (major2) == 9 && (minor) <= 2)
 #endif /* MIN_VERSION_wai_middleware_static */
+/* package wave-0.2.0 */
+#ifndef VERSION_wave
+#define VERSION_wave "0.2.0"
+#endif /* VERSION_wave */
+#ifndef MIN_VERSION_wave
+#define MIN_VERSION_wave(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  2 || \
+  (major1) == 0 && (major2) == 2 && (minor) <= 0)
+#endif /* MIN_VERSION_wave */
 
 /* tool gcc-14.0.3 */
 #ifndef TOOL_VERSION_gcc
@@ -183,10 +193,10 @@
 #endif /* MIN_TOOL_VERSION_runghc */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "Text-To-Speech-WebPage-0.1.0.0-1GyRaDtSqjSIPqohX6ZskG"
+#define CURRENT_PACKAGE_KEY "Text-To-Speech-WebPage-0.1.0.0-AGfTYoqkkxE9qY5AyDf7hV"
 #endif /* CURRENT_packageKey */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "Text-To-Speech-WebPage-0.1.0.0-1GyRaDtSqjSIPqohX6ZskG"
+#define CURRENT_COMPONENT_ID "Text-To-Speech-WebPage-0.1.0.0-AGfTYoqkkxE9qY5AyDf7hV"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"
