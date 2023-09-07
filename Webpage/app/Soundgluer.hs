@@ -60,17 +60,12 @@ glueSpeech :: String        -- ^ Name of the voice. It should match the name of 
 glueSpeech vox words filePath waveHeaders
         | null words = return ()
         | otherwise = do
-            --putStrLn waveHeaderPath
-            --putStrLn (intercalate ";" (intercalate [","] words))
             phoneSpeechMap <- loadVoxAudio vox
-            --phoneAudioMap <- loadVoxAudio vox
-            --waveHeader <- readWaveFile waveHeaderPath [needed to remove as it was overriding the WaveHeader argument sent from Mains.hs module]
             let appendWord w1 w2 = w1 `mappend` (phoneSpeechMap M.! "-") `mappend` w2
             let gluedSpeech = foldr appendWord (mempty :: B.Builder)
                             $ map (wordToSpeech phoneSpeechMap) words
             let phonesWriter = flip B.hPutBuilder gluedSpeech
-            
-            --made changes to writeWaveFile
+             --made changes to writeWaveFile
             writeWaveFile (filePath ++ waveExtension) waveHeaders phonesWriter
 
 -- | Maps word to speech using provided map
@@ -92,11 +87,6 @@ loadVoxAudio vox =
         --putStrLn (intercalate "," dirWaves)
         phoneAudioList <- zip <$> (return $ map phoneName dirWaves)
                               <*> forM dirWaves (getAudioData voxDirectory)
-
-        -- ## test
-        -- taking the phoneme part from the phoneAudioList (Phoneme, Audio Dta for that particular phoneme)
-        -- let phoneNames = map fst phoneAudioList
-        -- putStrLn(intercalate "," phoneNames) --[this is working fine the phoneName is correct]
         return $ M.fromList phoneAudioList
 
 -- | Checks using extension if file has the WAV format.

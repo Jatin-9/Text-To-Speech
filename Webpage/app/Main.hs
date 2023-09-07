@@ -7,6 +7,7 @@ import Control.Monad.IO.Class as IO
 import Text.Blaze.Html.Renderer.Text(renderHtml)
 import Network.Wai.Middleware.Static (staticPolicy, addBase)
 
+
 cssRoute :: Scotty.ScottyM ()
 cssRoute = Scotty.get "/style.css" $ do
    Scotty.setHeader ("Content-Type") ("text/css")
@@ -31,8 +32,8 @@ main = Scotty.scotty 3000 $ do
        IO.liftIO $ soundTest languageId inputText
        Scotty.html $ renderHtml
         myForm
-       --text $ TL.pack languageId <> " " <> TL.pack inputText
-    --soundRoute
+
+
        
 
    

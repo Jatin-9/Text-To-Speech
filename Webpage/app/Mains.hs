@@ -17,5 +17,3 @@ soundTest languageId inputText = do
   --speak voiceName phonemes
   glueSpeech voiceName phonemes filePath waveHeaders
  
-  --Speak the phonemes
-  --putStrLn (intercalate "; " (intercalate [", "] phonemes))

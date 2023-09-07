@@ -4,11 +4,6 @@ module Lib
 import qualified Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
 
-import Text.Blaze.Html.Renderer.Text(renderHtml)
-import qualified Data.Text.Lazy as TL
-import Control.Monad (forM_)
--- import Mains
-
 cssLink :: H.Html
 cssLink = H.link
   H.! A.rel (H.stringValue "stylesheet")
@@ -24,6 +19,7 @@ myForm = H.docTypeHtml $ do
     H.head $ do
         H.title $ H.toHtml "Text-to-Speech Search"
         cssLink
+        background
     H.body H.! A.style (H.stringValue "background-image: url('/background_image')") $ do
         H.div H.! A.class_(H.stringValue "big-box") $ do
          H.div H.! A.class_(H.stringValue "small-box") $ do
@@ -35,11 +31,10 @@ myForm = H.docTypeHtml $ do
              H.div H.! A.class_(H.stringValue "select") $ do
               H.select H.! A.name (H.stringValue "language") H.! A.id (H.stringValue "language") $ do
                 H.option H.! A.selected (H.stringValue " ") H.! A.disabled (H.stringValue " ") $ H.toHtml "Language Choice"
-                --H.option H.! A.value (H.stringValue "language Choice") $ H.toHtml "Language Choice"
                 H.option H.! A.value (H.stringValue "eng") $ H.toHtml "English"
                 H.option H.! A.value (H.stringValue "pol") $ H.toHtml "Polish"
              H.br
              H.button H.! A.type_ (H.stringValue "submit") H.! A.class_ (H.stringValue "submit") $ H.toHtml "Convert"
              H.br
-            H.audio H.! A.controls (H.stringValue "controls") $ do
+            H.audio H.! A.controls (H.stringValue "autoplay") $ do
               H.source H.! A.src (H.stringValue "/Users/jatinkandpal/git/text-to-speech/Webpage/Static/Final_Output/output.wav") H.! A.type_ (H.stringValue "audio/wav") 
