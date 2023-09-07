@@ -40,7 +40,7 @@ myForm = H.docTypeHtml $ do
                 H.option H.! A.value (H.stringValue "pol") $ H.toHtml "Polish"
              H.br
              H.button H.! A.type_ (H.stringValue "submit") H.! A.class_ (H.stringValue "submit") $ H.toHtml "Convert"
-             H.br
+             
 
 audioForm :: H.Html
 audioForm = H.docTypeHtml $ do
