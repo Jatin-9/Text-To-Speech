@@ -1,11 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main (main) where
 import Lib
+
 import Web.Scotty as Scotty
 import Mains
 import Control.Monad.IO.Class as IO
 import Text.Blaze.Html.Renderer.Text(renderHtml)
-import Network.Wai.Middleware.Static (staticPolicy, addBase)
+
 
 
 cssRoute :: Scotty.ScottyM ()
@@ -18,11 +19,17 @@ backgroundImage = Scotty.get "/background_image" $ do
    Scotty.setHeader ("Content-Type") ("image/jpeg")
    Scotty.file "/Users/jatinkandpal/git/text-to-speech/Webpage/Static/background_image.jpeg"
 
+
+audioUrl :: Scotty.ScottyM ()
+audioUrl = Scotty.get "/output.wav" $ do
+   Scotty.setHeader ("Content-Type") ("audio/wav")
+   Scotty.file "/Users/jatinkandpal/git/text-to-speech/Webpage/Static/Final_Output/output.wav"
+
 main :: IO ()
-main = Scotty.scotty 3000 $ do
-    Scotty.middleware $ staticPolicy (addBase "Static")
+main = Scotty.scotty 4000 $ do
     cssRoute
     backgroundImage
+    audioUrl
     Scotty.get(capture "/") $ do
        Scotty.html $ renderHtml
          myForm
@@ -31,7 +38,9 @@ main = Scotty.scotty 3000 $ do
        inputText <- param "input"     :: ActionM String
        IO.liftIO $ soundTest languageId inputText
        Scotty.html $ renderHtml
-        myForm
+        audioForm
+       
+
 
 
        
